@@ -1,6 +1,9 @@
+
 class Produto:
-    lista_produtos = {}
-    contador_id = 1
+    lista_produtos = {
+    }
+    db_produtos =[]
+    contador_id = 0
 
     def __init__(self, nome,marca, categoria):
         self.id = Produto.contador_id
@@ -8,37 +11,39 @@ class Produto:
         self.nome = nome
         self.marca = marca
         self.categoria = categoria
-        Produto.lista_produtos[self.id] = {
+        novo = Produto.lista_produtos[self.id] = {
+            "id": Produto.contador_id,
             "nome": nome,
             "marca": marca,
             "categoria": categoria
         }
+        self.db_produtos.append(novo)
         #self.historico_precos = []  # Lista de ItensCompra
     def __str__(self):
-      return f'{self.nome} {self.marca} - categoria: {self.categoria}'
-    @classmethod
-    def cadastrar_produto(cls):
-      nome = str(input('Insira o nome do produto: '))
-      marca = str(input(f'Insira o nome de {nome}: '))
-      categoria = str(input(f'categoria de {nome}: '))
-      novo_produto = cls(nome,marca,categoria)
-      return novo_produto
+      return f'{self.id} • {self.nome} {self.marca} - categoria: {self.categoria}'
       
     @staticmethod 
     def listar_produtos():
-      for produto in Produto.lista_produtos.items():
+      for produto in Produto.db_produtos:
         print(produto)
     
-    @staticmethod
-    def filtrar_nome(procurado):
-      produtos_encontrados = []
-      for id_produto, dados in Produto.lista_produtos.items():
-        if procurado.lower() == dados["nome"].lower():
-          produtos_encontrados.append({
-            "id":id_produto,
-            "nome": dados["nome"],
-            "categoria":dados["categoria"]
-          })
-      print(produtos_encontrados)
+    @classmethod
+    def cadastrar_produto(cls):
+      nome = str(input("Nome do Produto: "))
+      marca = str(input(f"Marca do {nome}: "))
+      categoria = str(input(f"Categoria do {nome}: "))
+      return cls(nome,marca,categoria)
     
+    
+      
+      
+n=2
+i=1
+while i <= n:
+  Produto.cadastrar_produto()
+  print('Produto cadastrado!')
+  i+=1
+
+
+Produto.listar_produtos()
 
