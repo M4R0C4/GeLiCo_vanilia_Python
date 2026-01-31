@@ -31,6 +31,6 @@ lista = {
 }
 
 agora partiu modelar as classes
+- lista
 - produto
 - item
-- lista
