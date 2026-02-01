@@ -31,7 +31,7 @@ class Item():
     Item.contador_id+=1
     
   def __str__(self):
-    return f'{self.quantidade}x {self.produto['nome']} {self.produto['marca']} {self.valor_medida}{self.medida} R${self.preco}'
+    return f'{self.quantidade}x {self.produto.nome} {self.produto.marca} {self.valor_medida}{self.medida} R${self.preco}'
   
   #entrada de itens interativo
   @classmethod  
@@ -58,11 +58,3 @@ class Item():
         quantidade_base = self.quantidade * fator
         return self.preco / quantidade_base
         
-
-
-Produto.listar_produtos()
-
-Item.novo_item()
-Item.novo_item()
-
-Item.mostrar_lista_atual()

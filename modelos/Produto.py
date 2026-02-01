@@ -61,12 +61,3 @@ class Produto:
           print(f'produto: {item["nome"]} \n marca: {item["marca"]}\n categoria: {item["categoria"]}')
       
       
-'''n=2
-i=1
-while i <= n:
-  Produto.cadastrar_produto()
-  print('Produto cadastrado!')
-  i+=1
-
-
-Produto.buscar_por()'''
