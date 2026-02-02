@@ -1,4 +1,5 @@
 import sys
+#import os
 print(sys.path)
 class Produto:
     lista_produtos = {
@@ -27,21 +28,49 @@ class Produto:
     @staticmethod 
     def listar_produtos():
       for produto in Produto.catalogo_produtos:
+        print(type(produto["nome"]))
         print(produto)
-    
+    @staticmethod
+    def verifica_campo(campo):
+      if type(campo) == str:
+        while campo == '':
+          print(f'Campo vazio detectado!')
+          campo = input(f'Favor, preencha o campo: ')
+          if campo != '':
+            break
+          
+      elif type(campo) == int or type(campo) == float:
+        if campo < 0 or campo == '':
+          print('Esse campo não recebe valores negativos.')
+          campo = int(input('Por favor, use valores positivos: '))
+      else:
+        print('Valor incompatível com o necessario. Tente novamente.')
+        pass
+      return campo
+      
     @classmethod
     def cadastrar_produto(cls):
-      nome = str(input("Nome do Produto: "))
-      marca = str(input(f"Marca do {nome}: "))
-      categoria = str(input(f"Categoria do {nome}: "))
+      nome = str(input("Nome do Produto: ")).strip()
+      cls.verifica_campo(nome)
+      marca = str(input(f"Marca do {nome}: ")).strip()
+      if marca == '':
+        print(f'O campo marca está vazio.')
+        marca = str(input(f"Marca do {nome}: ")).strip()
+      categoria = str(input(f"Categoria do {nome}: ")).strip()
+      if categoria == '':
+        print(f'O campo marca está vazio.')
+        categoria = str(input(f"Categoria do {nome}: ")).strip()
+        
       return cls(nome,marca,categoria)
     
     def buscar_por():
-      chave = str(input("Nome, Marca ou Categoria? \n Qual o critério da busca: "))
-      valor = str(input(f"Produto procurado pelo {chave}: "))
+      chave = str(input("Nome, Marca ou Categoria? \n Qual o critério da busca: ")).lower()
+      Produto.verifica_campo(chave)
+      valor = str(input(f"Produto procurado pelo {chave}: ")).lower()
+      Produto.verifica_campo(valor)
 
       for item in Produto.catalogo_produtos:
-        if valor in item[chave]:
+        if valor in item[chave].lower():
           print('Produto encontrado!')
           print(item)
           return item    
