@@ -42,6 +42,20 @@ class Item():
     #valor_total = novo_item.valor_item()
    
     print(novo_item)
+    Produto.verifica_campo(produto)
+    preco = float(input(f'Insira o preço do {produto['nome']}: '))
+    Produto.verifica_campo(preco)
+    
+    quantidade = float(input(f'Insira a quantidade de {produto['nome']}: '))
+    Produto.verifica_campo(quantidade)
+    medida = input(f'Qual a medida (L,Kg,g): ').upper()
+    Produto.verifica_campo(medida)
+    valor_medida = float(input(f'Quantos {medida} tem {produto['nome']}: '))
+    Produto.verifica_campo(valor_medida)
+    #data (criado em...)
+
+    print(cls(produto=produto, preco=preco, quantidade=quantidade,medida=medida, valor_medida=valor_medida))
+    return cls(produto=produto, preco=preco, quantidade=quantidade,medida=medida, valor_medida=valor_medida)  
   
   def mostrar_lista_atual():
     for item in Item.lista_itens_atual:
