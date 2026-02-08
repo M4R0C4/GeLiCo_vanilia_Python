@@ -1,8 +1,8 @@
 import sys
 print(sys.path)
 class Produto:
-    lista_produtos = {
-    }
+    
+    lista_produtos = {}
     catalogo_produtos =[{'id': 0, 'nome': 'Creme dental', 'marca': 'Colgate', 'categoria': 'Higiene'},
 {'id': 1, 'nome': 'Refrigerante', 'marca': 'Coca-Cola', 'categoria': 'Bebida'}]
     contador_id = 0
@@ -36,28 +36,39 @@ class Produto:
       categoria = str(input(f"Categoria do {nome}: "))
       return cls(nome,marca,categoria)
     
+    def valida_campo(campo):
+      if isinstance(campo, str):
+        if campo == '':
+          print('O campo não pode ser vazio!')
+          campo = input('Tente novamente: ')
+          
+    @staticmethod
     def buscar_por():
-      chave = str(input("Nome, Marca ou Categoria? \n Qual o critério da busca: "))
-      valor = str(input(f"Produto procurado pelo {chave}: "))
+      chaves = ["nome","marca", "categoria"]
+      print(f'Critérios de busca possíveis: {', '.join(chaves)}')
+     
+      chave = str(input("Sua escolha: ")).strip()
+      while chave not in chaves:
+        print("Critério inválido!")
+        print(f'Critérios de busca possíveis: {', '.join(chaves)}')
+        chave = str(input("Sua escolha: ")).strip()
+    
+      valor = str(input(f"Produto procurado pelo {chave}: ")).strip().capitalize()
 
+      
       for item in Produto.catalogo_produtos:
         if valor in item[chave]:
           print('Produto encontrado!')
           print(item)
-          return item    
-      
-      print('Produto não encontrado!')
-      print('Deseja cadastrar? [S/N]')
-      escolha = str(input('Escolha: ')).upper()
-      if escolha == 'S':
-        Produto.cadastrar_produto()
-        Produto.listar_produtos()
+          return item 
+        else:
+          print('Produto não encontrado!')
+          print('Deseja cadastrar? [S/N]')
+          escolha = str(input('Escolha: ')).upper()
+          if escolha == 'S':
+            Produto.cadastrar_produto()
+            Produto.listar_produtos()
           
-    def buscar_por_nome():
-      produto_procurado = str(input('Digite o nome do produto: '))
-      for item in Produto.catalogo_produtos:
-        if item["nome"] == produto_procurado:
-          print('Produto encontrado!')
-          print(f'produto: {item["nome"]} \n marca: {item["marca"]}\n categoria: {item["categoria"]}')
-      
-      
+    
+
+#Produto.buscar_por()
