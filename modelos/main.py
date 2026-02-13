@@ -8,6 +8,7 @@ Produto = importar_classe("Produto", "Produto")
 Item = importar_classe("Item", "Item")
 Lista = importar_classe("Lista", "Lista")
 
+<<<<<<< HEAD
 # 3. Inicia o programa
 # Greetings
 def greetings():
@@ -173,3 +174,9 @@ if __name__ == "__main__":
   main()
   
 
+=======
+#Produto.cadastrar_produto()
+#Produto.listar_produtos()
+Item.novo_item()
+Item.mostrar_lista_atual()
+>>>>>>> 107e402f4fdc2f9c3c340d031c2c032d0cb1952e

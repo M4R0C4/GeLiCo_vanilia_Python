@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+=======
+import sys
+#import os
+print(sys.path)
+class Produto:
+    
+    lista_produtos = {}
+    catalogo_produtos =[{'id': 0, 'nome': 'Creme dental', 'marca': 'Colgate', 'categoria': 'Higiene'},
+{'id': 1, 'nome': 'Refrigerante', 'marca': 'Coca-Cola', 'categoria': 'Bebida'}]
+    contador_id = 0
+>>>>>>> 107e402f4fdc2f9c3c340d031c2c032d0cb1952e
 
 class Produto:
     catalogo_produtos =[    {
@@ -36,6 +48,7 @@ class Produto:
       texto = '🄿🅁🄾🄳🅄🅃🄾🅂 🄲🄰🄳🄰🅂🅃🅁🄰🄳🄾🅂'
       print(texto.center(10))
       for produto in Produto.catalogo_produtos:
+<<<<<<< HEAD
         print(f'• {produto['id']} {produto['nome']} {produto['marca']} {produto['categoria']}')
     
     @classmethod
@@ -68,6 +81,42 @@ class Produto:
         })
       print(novo_produto)
       return novo_produto
+=======
+        print(type(produto["nome"]))
+        print(produto)
+    @staticmethod
+    def verifica_campo(campo):
+      if type(campo) == str:
+        while campo == '':
+          print(f'Campo vazio detectado!')
+          campo = input(f'Favor, preencha o campo: ')
+          if campo != '':
+            break
+          
+      elif type(campo) == int or type(campo) == float:
+        if campo < 0 or campo == '':
+          print('Esse campo não recebe valores negativos.')
+          campo = int(input('Por favor, use valores positivos: '))
+      else:
+        print('Valor incompatível com o necessario. Tente novamente.')
+        pass
+      return campo
+      
+    @classmethod
+    def cadastrar_produto(cls):
+      nome = str(input("Nome do Produto: ")).strip()
+      cls.verifica_campo(nome)
+      marca = str(input(f"Marca do {nome}: ")).strip()
+      if marca == '':
+        print(f'O campo marca está vazio.')
+        marca = str(input(f"Marca do {nome}: ")).strip()
+      categoria = str(input(f"Categoria do {nome}: ")).strip()
+      if categoria == '':
+        print(f'O campo marca está vazio.')
+        categoria = str(input(f"Categoria do {nome}: ")).strip()
+        
+      return cls(nome,marca,categoria)
+>>>>>>> 107e402f4fdc2f9c3c340d031c2c032d0cb1952e
     
     @staticmethod
     def valida_campo(campo):
@@ -120,9 +169,18 @@ class Produto:
         chave = str(input("Sua escolha: ")).strip()
         
       valor = str(input(f"Produto procurado pelo {chave}: ")).strip().capitalize()
+<<<<<<< HEAD
       resultados =[]
+=======
+      chave = str(input("Nome, Marca ou Categoria? \n Qual o critério da busca: ")).lower()
+      Produto.verifica_campo(chave)
+      valor = str(input(f"Produto procurado pelo {chave}: ")).lower()
+      Produto.verifica_campo(valor)
+
+      
+>>>>>>> 107e402f4fdc2f9c3c340d031c2c032d0cb1952e
       for item in Produto.catalogo_produtos:
-        if valor in item[chave]:
+        if valor in item[chave].lower():
           print('Produto encontrado!')
           print(f'• {produto['id']} {produto['nome']} {produto['marca']} {produto['categoria']}')
           return item
