@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 import sys
 #import os
 print(sys.path)
@@ -7,27 +9,79 @@ class Produto:
     catalogo_produtos =[{'id': 0, 'nome': 'Creme dental', 'marca': 'Colgate', 'categoria': 'Higiene'},
 {'id': 1, 'nome': 'Refrigerante', 'marca': 'Coca-Cola', 'categoria': 'Bebida'}]
     contador_id = 0
+>>>>>>> 107e402f4fdc2f9c3c340d031c2c032d0cb1952e
 
+class Produto:
+    catalogo_produtos =[    {
+        "id": 101,
+        "nome": "Teclado Mecânico",
+        "marca": "HyperX",
+        "categoria": "Periféricos"
+    },
+    {
+        "id": 102,
+        "nome": "Café Torrado",
+        "marca": "3 Corações",
+        "categoria": "Alimentos"
+    },
+    {
+        "id": 103,
+        "nome": "Caderno Universitário",
+        "marca": "Tilibra",
+        "categoria": "Papelaria"
+    }]
+    contador_id = 0
     def __init__(self, nome,marca, categoria):
         self.id = Produto.contador_id
         self.nome = nome
         self.marca = marca
         self.categoria = categoria
-        novo = Produto.lista_produtos[self.id] = {
-            "id": self.id,
-            "nome": nome,
-            "marca": marca,
-            "categoria": categoria
-        }
         Produto.contador_id += 1
-        self.catalogo_produtos.append(novo)
+        #self.catalogo_produtos.append(novo)
         #self.historico_precos = []  # Lista de ItensCompra
+        
     def __str__(self):
       return f'{self.id} • {self.nome} {self.marca} - categoria: {self.categoria}'
       
     @staticmethod 
     def listar_produtos():
+      texto = '🄿🅁🄾🄳🅄🅃🄾🅂 🄲🄰🄳🄰🅂🅃🅁🄰🄳🄾🅂'
+      print(texto.center(10))
       for produto in Produto.catalogo_produtos:
+<<<<<<< HEAD
+        print(f'• {produto['id']} {produto['nome']} {produto['marca']} {produto['categoria']}')
+    
+    @classmethod
+    def cadastrar_produto(cls):
+      texto = '🄲🄰🄳🄰🅂🅃🅁🄾 🄳🄴 🄽🄾🅅🄾🅂 🄿🅁🄾🄳🅄🅃🄾🅂'
+      print(texto.center(10))
+      nome = str(input("Nome do Produto: "))
+      Produto.valida_campo(nome)
+      marca = str(input(f"Marca: "))
+      Produto.valida_campo(marca)
+      categoria = str(input(f"Categoria: "))
+      Produto.valida_campo(categoria)
+      
+      for produto in cls.catalogo_produtos:
+        if produto["nome"].lower() == nome.lower() and produto["marca"].lower() == marca.lower() and produto["categoria"].lower() == categoria.lower():
+          print('produto ja existe')
+          escolha = input('Deseja adicionar algum outro produto? [s/n]: ').strip().lower()
+          if escolha == 's':
+            cls.cadastrar_produto()
+          elif escolha == 'n':
+            print('produtos adicionados:')
+            print(cls.catalogo_produtos)
+            return
+      novo_produto = cls(nome,marca,categoria)
+      cls.catalogo_produtos.append({
+        "id": novo_produto.id,
+        "nome": novo_produto.nome,
+        "marca": novo_produto.marca,
+        "categoria": novo_produto.categoria
+        })
+      print(novo_produto)
+      return novo_produto
+=======
         print(type(produto["nome"]))
         print(produto)
     @staticmethod
@@ -62,15 +116,49 @@ class Produto:
         categoria = str(input(f"Categoria do {nome}: ")).strip()
         
       return cls(nome,marca,categoria)
+>>>>>>> 107e402f4fdc2f9c3c340d031c2c032d0cb1952e
     
+    @staticmethod
     def valida_campo(campo):
       if isinstance(campo, str):
-        if campo == '':
-          print('O campo não pode ser vazio!')
-          campo = input('Tente novamente: ')
-          
+        if not campo:
+          while not campo:
+            print('O campo não pode ser vazio!')
+            campo = input('Tente novamente: ')
+        
+        elif len(campo) < 3:
+          while len(campo) < 3:
+            print('Valor curto demais. Precisa de mais caractere!')
+            campo = input('Tente novamente: ')
+        else:
+          return campo
+      elif isinstance(campo, int):
+        if not campo:
+          while not campo:
+            print('O campo não pode ser vazio!')
+            campo = input('Tente novamente: ')
+        elif campo < 0:
+          while campo < 0:
+            print('O campo nao pode ser menor que zero!')
+            campo = input('Tente novamente: ')
+        else:
+          return campo
+      elif isinstance(campo,float):
+        if not campo:
+          while not campo:
+            print('O campo não pode ser vazio!')
+            campo = input('Tente novamente: ')
+        elif campo < 0:
+          while campo < 0:
+            print('O campo nao pode ser menor que zero!')
+            campo = input('Tente novamente: ')
+        else:
+          return campo      
+    
     @staticmethod
     def buscar_por():
+      texto_busca = '🄱🅄🅂🄲🄰 🄳🄴 🄿🅁🄾🄳🅄🅃🄾🅂'
+      print(texto_busca.center(10))
       chaves = ["nome","marca", "categoria"]
       print(f'Critérios de busca possíveis: {', '.join(chaves)}')
      
@@ -79,19 +167,23 @@ class Produto:
         print("Critério inválido!")
         print(f'Critérios de busca possíveis: {', '.join(chaves)}')
         chave = str(input("Sua escolha: ")).strip()
-    
+        
       valor = str(input(f"Produto procurado pelo {chave}: ")).strip().capitalize()
+<<<<<<< HEAD
+      resultados =[]
+=======
       chave = str(input("Nome, Marca ou Categoria? \n Qual o critério da busca: ")).lower()
       Produto.verifica_campo(chave)
       valor = str(input(f"Produto procurado pelo {chave}: ")).lower()
       Produto.verifica_campo(valor)
 
       
+>>>>>>> 107e402f4fdc2f9c3c340d031c2c032d0cb1952e
       for item in Produto.catalogo_produtos:
         if valor in item[chave].lower():
           print('Produto encontrado!')
-          print(item)
-          return item 
+          print(f'• {produto['id']} {produto['nome']} {produto['marca']} {produto['categoria']}')
+          return item
         else:
           print('Produto não encontrado!')
           print('Deseja cadastrar? [S/N]')
@@ -102,4 +194,3 @@ class Produto:
           
     
 
-#Produto.buscar_por()
